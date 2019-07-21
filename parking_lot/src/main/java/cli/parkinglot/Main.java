@@ -1,5 +1,10 @@
 package cli.parkinglot;
 
+import cli.parkinglot.exception.ErrorCode;
+import cli.parkinglot.exception.ParkingException;
+import cli.parkinglot.handler.AbstractHandler;
+import cli.parkinglot.handler.RequestHandler;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,6 +16,7 @@ public class Main
 {
 	public static void main(String[] args)
 	{
+		AbstractHandler handler = new RequestHandler();
 		BufferedReader bufferReader = null;
 		String input = null;
 		try
@@ -35,11 +41,27 @@ public class Main
 							else
 							{
 								// Validate and process
+								if (handler.validate(input))
+								{
+									try
+									{
+										handler.execute(input.trim());
+									}
+									catch (Exception e)
+									{
+										System.out.println(e.getMessage());
+									}
+								}
+								else
+								{
+									showCommands();
+								}
 							}
 						}
 						catch (Exception e)
 						{
 							// Throw parking exception
+							throw new ParkingException(ErrorCode.INVALID_CMD.getMessage(), e);
 						}
 					}
 					break;
@@ -54,11 +76,27 @@ public class Main
 						while ((input = bufferReader.readLine()) != null)
 						{
 							//Validate and process
+							input = input.trim();
+							if (handler.validate(input))
+							{
+								try
+								{
+									handler.execute(input);
+								}
+								catch (Exception e)
+								{
+									System.out.println(e.getMessage());
+								}
+							}
+							else
+								System.out.println("Incorrect Command Found at line: " + lineNo + " ,Input: " + input);
+							lineNo++;
 						}
 					}
 					catch (Exception e)
 					{
 					// Throw parking exception
+						throw new ParkingException(ErrorCode.INVALID_FILE.getMessage(), e);
 					}
 					break;
 				}

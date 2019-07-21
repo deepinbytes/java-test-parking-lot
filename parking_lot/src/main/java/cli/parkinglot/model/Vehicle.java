@@ -34,7 +34,7 @@ public abstract class Vehicle implements Externalizable
 	
 	/**
 	 * @param color
-	 *            the color to set
+	 * the color to set
 	 */
 	public void setColor(String color)
 	{
@@ -42,14 +42,14 @@ public abstract class Vehicle implements Externalizable
 	}
 
 	@Override
-	public void readBlob(ObjectInput in) throws IOException, ClassNotFoundException
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException
 	{
 		setRegistrationNo((String) in.readObject());
 		setColor((String) in.readObject());
 	}
 
 	@Override
-	public void writeBlob(ObjectOutput out) throws IOException
+	public void writeExternal(ObjectOutput out) throws IOException
 	{
 		out.writeObject(getRegistrationNo());
 		out.writeObject(getColor());
@@ -65,7 +65,7 @@ public abstract class Vehicle implements Externalizable
 
 	/**
 	 * @param registrationNo
-	 *            the registrationNo to set
+	 * the registrationNo to set
 	 */
 	public void setRegistrationNo(String registrationNo)
 	{

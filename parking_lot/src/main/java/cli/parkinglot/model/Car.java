@@ -14,14 +14,14 @@ public class Car extends Vehicle
 	}
 	
 	@Override
-	public void writeBlob(ObjectOutput out) throws IOException
+	public void writeExternal(ObjectOutput out) throws IOException
 	{
-		super.writeBlob(out);
+		super.writeExternal(out);
 	}
 	
 	@Override
-	public void readBlob(ObjectInput in) throws IOException, ClassNotFoundException
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException
 	{
-		super.readBlob(in);
+		super.readExternal(in);
 	}
 }
