@@ -19,14 +19,12 @@ public class RequestHandler implements AbstractHandler
     {
         String[] inputs = input.split(" ");
         String key = inputs[0];
-        String command = inputs[1];
-        String param = inputs[2];
         switch (key)
         {
             case Constants.CREATE_PARKING_LOT:
                 try
                 {
-                    parkingService.createParkingLot(Integer.parseInt(command));
+                    parkingService.createParkingLot(Integer.parseInt(inputs[1]));
                 }
                 catch (NumberFormatException e)
                 {
@@ -38,12 +36,12 @@ public class RequestHandler implements AbstractHandler
                 }
                 break;
             case Constants.PARK:
-                parkingService.park(new Car(command, param));
+                parkingService.park(new Car(inputs[1], inputs[2]));
                 break;
             case Constants.LEAVE:
                 try
                 {
-                    parkingService.unPark(Integer.parseInt(command));
+                    parkingService.unPark(Integer.parseInt(inputs[1]));
                 }
                 catch (NumberFormatException e)
                 {
@@ -58,13 +56,13 @@ public class RequestHandler implements AbstractHandler
                 parkingService.getStatus();
                 break;
             case Constants.REG_NUMBER_FOR_CARS_WITH_COLOR:
-                parkingService.getRegistrationNumberForColor(command);
+                parkingService.getRegistrationNumberForColor(inputs[1]);
                 break;
             case Constants.SLOTS_NUMBER_FOR_CARS_WITH_COLOR:
-                parkingService.getSlotNumbersFromColor(command);
+                parkingService.getSlotNumbersFromColor(inputs[1]);
                 break;
             case Constants.SLOTS_NUMBER_FOR_REG_NUMBER:
-                parkingService.getSlotNoFromRegistrationNo(command);
+                parkingService.getSlotNoFromRegistrationNo(inputs[1]);
                 break;
             default:
                 break;

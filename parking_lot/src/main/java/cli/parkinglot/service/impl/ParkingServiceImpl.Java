@@ -1,6 +1,7 @@
 package cli.parkinglot.service.impl;
 
 
+import cli.parkinglot.constants.Constants;
 import cli.parkinglot.dao.DataManager;
 import cli.parkinglot.dao.impl.DataManagerImpl;
 import cli.parkinglot.exception.ErrorCode;
@@ -71,9 +72,9 @@ public class ParkingServiceImpl implements ParkingService
                 System.out.println("Sorry, parking lot is empty.");
             else
             {
-                for (String statusSting : statusList)
+                for (String status : statusList)
                 {
-                    System.out.println(statusSting);
+                    System.out.println(status);
                 }
             }
         }
@@ -158,7 +159,28 @@ public class ParkingServiceImpl implements ParkingService
 
     @Override
     public Optional<Integer> park(Vehicle vehicle) throws ParkingException {
-        return Optional.empty();
+        Optional<Integer> result = Optional.empty();
+        lock.writeLock().lock();
+        validateParkingLot();
+        try
+        {
+            result = Optional.of(dataManager.parkCar(vehicle));
+            if (result.get() == Constants.NOT_AVAILABLE)
+                System.out.println("Sorry, parking lot is full");
+            else if (result.get() == Constants.VEHICLE_ALREADY_EXIST)
+                System.out.println("Sorry, vehicle is already parked.");
+            else
+                System.out.println("Allocated slot number: " + result.get());
+        }
+        catch (Exception e)
+        {
+            throw new ParkingException(ErrorCode.FATAL_ERROR.getMessage(), e);
+        }
+        finally
+        {
+            lock.writeLock().unlock();
+        }
+        return result;
     }
 
     @Override
