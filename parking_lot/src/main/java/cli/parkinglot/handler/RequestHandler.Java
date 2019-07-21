@@ -17,7 +17,6 @@ public class RequestHandler implements AbstractHandler
     @Override
     public void execute(String input) throws ParkingException
     {
-        int level = 1;
         String[] inputs = input.split(" ");
         String key = inputs[0];
         String command = inputs[1];
@@ -27,7 +26,7 @@ public class RequestHandler implements AbstractHandler
             case Constants.CREATE_PARKING_LOT:
                 try
                 {
-                    parkingService.createParkingLot(level, Integer.parseInt(command));
+                    parkingService.createParkingLot(Integer.parseInt(command));
                 }
                 catch (NumberFormatException e)
                 {
@@ -39,12 +38,12 @@ public class RequestHandler implements AbstractHandler
                 }
                 break;
             case Constants.PARK:
-                parkingService.park(level, new Car(command, param));
+                parkingService.park(new Car(command, param));
                 break;
             case Constants.LEAVE:
                 try
                 {
-                    parkingService.unPark(level, Integer.parseInt(command));
+                    parkingService.unPark(Integer.parseInt(command));
                 }
                 catch (NumberFormatException e)
                 {
@@ -56,16 +55,16 @@ public class RequestHandler implements AbstractHandler
                 }
                 break;
             case Constants.STATUS:
-                parkingService.getStatus(level);
+                parkingService.getStatus();
                 break;
             case Constants.REG_NUMBER_FOR_CARS_WITH_COLOR:
-                parkingService.getRegistrationNumberForColor(level, command);
+                parkingService.getRegistrationNumberForColor(command);
                 break;
             case Constants.SLOTS_NUMBER_FOR_CARS_WITH_COLOR:
-                parkingService.getSlotNumbersFromColor(level, command);
+                parkingService.getSlotNumbersFromColor(command);
                 break;
             case Constants.SLOTS_NUMBER_FOR_REG_NUMBER:
-                parkingService.getSlotNoFromRegistrationNo(level, command);
+                parkingService.getSlotNoFromRegistrationNo(command);
                 break;
             default:
                 break;

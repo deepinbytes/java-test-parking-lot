@@ -18,7 +18,7 @@ public interface DataManager <T extends Vehicle>{
 
     public  int getSlotNoFromRegistrationNo(String registrationNo);
 
-    public  int getAvailableSlotsCount(int level);
+    public  int getAvailableSlotsCount();
 
     public  void Clean();
 }

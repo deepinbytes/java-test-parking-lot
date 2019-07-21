@@ -4,6 +4,7 @@ import cli.parkinglot.exception.ErrorCode;
 import cli.parkinglot.exception.ParkingException;
 import cli.parkinglot.handler.AbstractHandler;
 import cli.parkinglot.handler.RequestHandler;
+import cli.parkinglot.service.impl.ParkingServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,6 +18,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		AbstractHandler handler = new RequestHandler();
+		handler.setService(new ParkingServiceImpl());
 		BufferedReader bufferReader = null;
 		String input = null;
 		try

@@ -139,7 +139,7 @@ public class DataManagerImpl<T extends Vehicle> implements DataManager<T> {
     }
 
     @Override
-    public int getAvailableSlotsCount(int level) {
+    public int getAvailableSlotsCount() {
         return availability.get();
     }
 
