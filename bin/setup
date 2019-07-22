@@ -1,10 +1,8 @@
-MVN_PATH = parking_lot/pom.xml
-
 # Install dependencies
-mvn -f $MVN_PATH/pom.xml clean install -DskipTests
+mvn -f parking_lot/pom.xml clean install -DskipTests
 
 # Run tests
-# mvn -f $MVN_PATH/pom.xml test
+# mvn -f parking_lot/pom.xml test
 
 # build and package project
-mvn -f $MVN_PATH/pom.xml clean package -DskipTests
+mvn -f parking_lot/pom.xml clean package -DskipTests
