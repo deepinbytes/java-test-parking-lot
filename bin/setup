@@ -2,7 +2,7 @@
 mvn -f parking_lot/pom.xml clean install -DskipTests
 
 # Run tests
-# mvn -f parking_lot/pom.xml test
+mvn -f parking_lot/pom.xml test
 
 # build and package project
 mvn -f parking_lot/pom.xml clean package -DskipTests
