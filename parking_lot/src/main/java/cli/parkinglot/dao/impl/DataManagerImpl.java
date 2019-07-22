@@ -62,8 +62,18 @@ public class DataManagerImpl<T extends Vehicle> implements DataManager<T> {
         else
         {
             availableSlot = Strategy.getSlot();
-            if (allocationMap.containsValue(Optional.of(vehicle)))
-                return Constants.VEHICLE_ALREADY_EXIST;
+            Optional<T> checkVehicle = Optional.of(vehicle);
+            for (int i = 1; i <= capacity.get(); i++)
+            {
+                Optional<T> existingVehicle = allocationMap.get(i);
+                if (existingVehicle.isPresent() &&
+                        existingVehicle.get().getRegistrationNo().equalsIgnoreCase(
+                                checkVehicle.get().getRegistrationNo()))
+                {
+                    return Constants.VEHICLE_ALREADY_EXIST;
+                }
+            }
+
 
             allocationMap.put(availableSlot, Optional.of(vehicle));
             availability.decrementAndGet();
