@@ -184,13 +184,13 @@ public class ParkingServiceImpl implements ParkingService
     }
 
     @Override
-    public Optional<Integer> getAvailableSlotsCount() throws ParkingException {
+    public int getAvailableSlotsCount() throws ParkingException {
         lock.readLock().lock();
-        Optional<Integer> count = Optional.empty();
+        int count;
         validateParkingLot();
         try
         {
-            count = Optional.of(dataManager.getAvailableSlotsCount());
+            count = dataManager.getAvailableSlotsCount();
         }
         catch (Exception e)
         {

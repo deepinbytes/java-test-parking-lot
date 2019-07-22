@@ -227,5 +227,51 @@ public class MainTest {
 
     }
 
+    @Test
+    public void testGetSlotByRegistrationNo() throws Exception
+    {
+        ParkingService instance = new ParkingServiceImpl();
+        instance.createParkingLot(10);
+        instance.park(new Car("KA-01-HH-4243", "White"));
+        instance.park(new Car("KA-01-HH-5422", "White"));
+        instance.park(new Car("KA-01-HH-234", "White"));
+        instance.park(new Car("KA-01-HH-34", "White"));
+        instance.park(new Car("KA-01-HH-5423422", "White"));
+        instance.park(new Car("KA-01-HH-23", "White"));
+        instance.park(new Car("KA-01-HH-234", "White"));
+        instance.park(new Car("KA-01-HH-345", "White"));
+        instance.park(new Car("KA-01-HH-654", "White"));
+        instance.park(new Car("KA-01-HH-645", "White"));
+        instance.park(new Car("KA-01-HH-676", "White"));
+        instance.getSlotNoFromRegistrationNo("KA-01-HH-654");
+        String output =outContent.toString();
+        assertTrue(containsIgnoreCase(output.trim().replace(" ",""),
+                "9"));
+        instance.Clean();
+    }
+
+    @Test
+    public void testGetSlotByColor() throws Exception
+    {
+        ParkingService instance = new ParkingServiceImpl();
+        instance.createParkingLot(10);
+        instance.park(new Car("KA-01-HH-4243", "White"));
+        instance.park(new Car("KA-01-HH-5422", "White"));
+        instance.park(new Car("KA-01-HH-234", "White"));
+        instance.park(new Car("KA-01-HH-34", "White"));
+        instance.park(new Car("KA-01-HH-5423422", "White"));
+        instance.park(new Car("KA-01-HH-23", "White"));
+        instance.park(new Car("KA-01-HH-234", "White"));
+        instance.park(new Car("KA-01-HH-345", "White"));
+        instance.park(new Car("KA-01-HH-654", "White"));
+        instance.park(new Car("KA-01-HH-645", "White"));
+        instance.park(new Car("KA-01-HH-676", "White"));
+        instance.getSlotNumbersFromColor("White");
+        String output =outContent.toString();
+        assertTrue(containsIgnoreCase(output.trim().replace(" ",""),
+                "1,2,3,4,5,6,7,8,9,10"));
+        instance.Clean();
+    }
+
 
 }

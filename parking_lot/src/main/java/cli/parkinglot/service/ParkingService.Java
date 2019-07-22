@@ -22,7 +22,7 @@ public interface ParkingService extends AbstractService
 
     Optional<Integer> park(Vehicle vehicle) throws ParkingException;
 
-    Optional<Integer> getAvailableSlotsCount() throws ParkingException;
+    int getAvailableSlotsCount() throws ParkingException;
 
     void Clean();
 }
