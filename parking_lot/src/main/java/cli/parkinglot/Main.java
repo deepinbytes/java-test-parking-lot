@@ -28,7 +28,7 @@ public class Main
 			{
 				case 0: // Interactive
 				{
-					System.out.println("Please Enter 'X' to end the program");
+					System.out.println("Please Enter 'exit' to end the program");
 					System.out.println("Input:");
 					while (true)
 					{
@@ -36,7 +36,7 @@ public class Main
 						{
 							bufferReader = new BufferedReader(new InputStreamReader(System.in));
 							input = bufferReader.readLine().trim();
-							if (input.equals("X"))
+							if (input.equals("exit"))
 							{
 								break;
 							}

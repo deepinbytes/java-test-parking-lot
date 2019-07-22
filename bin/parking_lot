@@ -1,0 +1,13 @@
+#!/bin/sh
+ARGS=$1
+JAR_DIRECTORY=parking_lot/target
+JAR_NAME=parkinglot-1.0-SNAPSHOT.jar
+
+if [ -z "$1" ] ; then
+        java -jar $JAR_DIRECTORY/$JAR_NAME
+        exit 1
+
+else
+	java -jar $JAR_DIRECTORY/$JAR_NAME $ARGS
+
+fi
