@@ -17,17 +17,19 @@ end
 def run_command(pty, command)
   stdout, stdin, pid = pty
   stdin.puts command
-  sleep(0.3)
-  stdout.readline
+  sleep(0.6)
+  stdout.flush
 end
+
 
 def fetch_stdout(pty)
   stdout, stdin, pid = pty
   res = []
   while true
     begin
-      Timeout::timeout 0.5 do
+      Timeout::timeout 0.7 do
         res << stdout.readline
+        stdout.sync
       end
     rescue EOFError, Errno::EIO, Timeout::Error
       break

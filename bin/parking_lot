@@ -1,13 +1,11 @@
-#!/bin/sh
-ARGS=$1
-JAR_DIRECTORY=parking_lot/target
-JAR_NAME=parkinglot-1.0-SNAPSHOT.jar
+#!/usr/bin/env ruby
 
-if [ -z "$1" ] ; then
-        java -jar $JAR_DIRECTORY/$JAR_NAME
-        exit 1
+project_bin_dir = File.join(File.dirname(File.expand_path(__FILE__)))
+target_dir = File.join(project_bin_dir, '..', 'parking_lot','target')
+if ARGV.length > 0
+  	cmd = "java -jar #{target_dir}/parkinglot-1.0-SNAPSHOT.jar " + ARGV[0]
+  else 
+  	cmd = "java -jar #{target_dir}/parkinglot-1.0-SNAPSHOT.jar "
+end
 
-else
-	java -jar $JAR_DIRECTORY/$JAR_NAME $ARGS
-
-fi
+system cmd

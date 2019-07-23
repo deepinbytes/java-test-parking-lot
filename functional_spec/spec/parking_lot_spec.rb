@@ -8,7 +8,12 @@ RSpec.describe 'Parking Lot' do
   end
 
   it "can create a parking lot", :sample => true do
-    expect(fetch_stdout(pty)).to end_with("Created a parking lot with 3 slots\n")
+    expect(fetch_stdout(pty)).to end_with("Created parking lot with 3 slots\n")
+  end
+
+  it "can test slot empty" do
+    run_command(pty, "leave 1\n")
+    expect(fetch_stdout(pty)).to end_with("Slot number is Empty Already.\n")
   end
 
   it "can park a car" do
@@ -27,14 +32,8 @@ RSpec.describe 'Parking Lot' do
     run_command(pty, "park KA-01-HH-3141 Black\n")
     run_command(pty, "park KA-01-HH-9999 White\n")
     run_command(pty, "status\n")
-    expect(fetch_stdout(pty)).to end_with(<<-EOTXT
-Slot No.    Registration No    Colour
-1           KA-01-HH-1234      White
-2           KA-01-HH-3141      Black
-3           KA-01-HH-9999      White
-EOTXT
+    expect(fetch_stdout(pty)).to end_with("3\t\tKA-01-HH-9999\t\tWhite\n"
 )
   end
   
-  pending "add more specs as needed"
 end

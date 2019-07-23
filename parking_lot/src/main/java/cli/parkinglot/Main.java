@@ -23,13 +23,11 @@ public class Main
 		String input = null;
 		try
 		{
-			showCommands();
+			//showCommands();
 			switch (args.length)
 			{
 				case 0: // Interactive
 				{
-					System.out.println("Please Enter 'exit' to end the program");
-					System.out.println("Input:");
 					while (true)
 					{
 						try
@@ -53,10 +51,6 @@ public class Main
 									{
 										System.out.println(e.getMessage());
 									}
-								}
-								else
-								{
-									showCommands();
 								}
 							}
 						}
@@ -124,32 +118,4 @@ public class Main
 		}
 	}
 	
-	private static void showCommands()
-	{
-		StringBuffer buffer = new StringBuffer();
-		buffer = buffer.append(
-				"Please Enter one of the below commands followed by the variable")
-				.append("\n");
-		buffer = buffer.append(
-				"A) For creating parking lot of size n ---> create_parking_lot `capacity`")
-				.append("\n");
-		buffer = buffer.append(
-				"B) Park car ---> park `car_number` `car_color`")
-				.append("\n");
-		buffer = buffer.append(
-				"C) Unpark car ---> leave `slot_number`")
-				.append("\n");
-		buffer = buffer.append(
-				"D) Status ---> status").append("\n");
-		buffer = buffer.append(
-				"E) Registration no for the given car color ---> registration_numbers_for_cars_with_color `car_color`")
-				.append("\n");
-		buffer = buffer.append(
-				"F) Slot numbers for the given car color ---> slot_numbers_for_cars_with_color `car_color`")
-				.append("\n");
-		buffer = buffer.append(
-				"G) Slot number for the given car number ---> slot_number_for_registration_number `car_number`")
-				.append("\n");
-		System.out.println(buffer.toString());
-	}
 }
