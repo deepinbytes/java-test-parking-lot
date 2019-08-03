@@ -1,4 +1,4 @@
-GOJEK Parking lot
+Parking lot Problem
 
 A simple parking lot program to allocate vehicles in the lot using nearest first strategy.
 
